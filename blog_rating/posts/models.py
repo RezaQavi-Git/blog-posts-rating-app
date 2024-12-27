@@ -4,17 +4,11 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
+    average_rating = models.FloatField(default=0)
+    rating_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
-
-    @property
-    def average_rating(self):
-        return self.ratings.aggregate(avg=models.Avg('score'))['avg'] or 0
-
-    @property
-    def rating_count(self):
-        return self.ratings.count()
 
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,19 +1,18 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from django.db import models
+from rest_framework.generics import ListAPIView
 from .models import Post, Rating
 from .serializers import PostListSerializer, RatingSerializer
 
-class PostListView(generics.ListAPIView):
+class PostListView(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostListSerializer
 
-    def get_queryset(self):
-        return Post.objects.annotate(
-            average_rating= models.Avg('ratings__score'),
-            rating_count= models.Count('ratings')
-        )
+    # @method_decorator(cache_page(60 * 5))  # Cache for 5 minutes
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 
 class RatingCreateUpdateView(generics.CreateAPIView):
     serializer_class = RatingSerializer
@@ -22,8 +21,6 @@ class RatingCreateUpdateView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         data = request.data
         user = request.user
-        print(data)
-        print(user)
         try:
             rating = Rating.objects.get(user=user, post_id=data['post'])
             rating.score = data['score']
