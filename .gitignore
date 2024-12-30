@@ -4,3 +4,4 @@ blog_rating/blog_rating/__pycache__/
 blog_rating/posts/migrations/
 blog_rating/posts/__pycache__/
 blog_rating/db.sqlite3
+celerybeat-schedule
