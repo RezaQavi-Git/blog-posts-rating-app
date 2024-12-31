@@ -50,3 +50,17 @@ A significant challenge in this system arises when a post receives a high volume
 - **Rate Limiting:**
   - One of the key strategies to mitigate rating manipulation is implementing rate limiting. This ensures that users 
       cannot excessively rate a post within a short interval.
+
+## Areas for Improvement  
+
+1. **Environment Management**:  
+   Currently, environment variables are hardcoded in the project. In future iterations, these will be moved to a `.env` file and dynamically loaded into the project for better configuration management.  
+
+2. **Database Storage**:  
+   At this stage, the project uses Django's default database, a simple `sqlite` instance, to store post and rating data. In the future, this will be upgraded to a `PostgreSQL` database for improved scalability and performance. While `MongoDB` could be an alternative, our schema is static, making `PostgreSQL` the preferred choice.  
+
+3. **Testing**:  
+   Due to the simplicity of the current logic, comprehensive tests haven't been written yet. This is an area where improvements can be made as the project evolves.  
+
+4. **Load Testing**:  
+   A load testing phase is essential for evaluating the performance and accuracy of the average scoring logic. Tools like `Locust` or `k6` can be utilized for RESTful API load testing to ensure the system meets performance requirements.  
