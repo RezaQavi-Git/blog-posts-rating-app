@@ -9,7 +9,6 @@ class PostListView(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostListSerializer
 
-    # @method_decorator(cache_page(60 * 5))  # Cache for 5 minutes
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
