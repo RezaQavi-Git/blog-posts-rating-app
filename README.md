@@ -2,6 +2,13 @@
 
 The Blog Posts Rating App is a Django application that allows users to rate and manage blog posts.
 
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Issues](#Issues)
+- [Areas for Improvement](#Areas-for-Improvement)
+
 ## Features
 
 - **Rate Blog Posts**: Users can assign ratings to blog posts.
@@ -51,7 +58,7 @@ A significant challenge in this system arises when a post receives a high volume
   - One of the key strategies to mitigate rating manipulation is implementing rate limiting. This ensures that users 
       cannot excessively rate a post within a short interval.
 
-## Areas for Improvement  
+## Areas for Improvement
 
 1. **Environment Management**:  
    Currently, environment variables are hardcoded in the project. In future iterations, these will be moved to a `.env` file and dynamically loaded into the project for better configuration management.  
